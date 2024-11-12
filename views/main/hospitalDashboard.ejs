@@ -1,0 +1,79 @@
+<% layout('layout/layoutPlate') %>
+<body class="bg-light">
+    <!-- Main Content -->
+    <div class="container my-4">
+        <div class="text-center mb-4">
+            <!-- Displaying the hospital name -->
+            <h1><%= data.hospitalName %></h1> <!-- Make sure data.hospitalName is passed from the backend -->
+            <p class="lead">Welcome to the Organ Donation Registration Platform</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Register as Donor -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Register as Donor</h5>
+                        <p class="card-text">Join us to make a difference by registering as a donor.</p>
+                        <button class="btn btn-success w-100" onclick="registerUser('Donor')">Register as Donor</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register as Receiver -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Register as Receiver</h5>
+                        <p class="card-text">Sign up to receive organ donation support.</p>
+                        <button class="btn btn-primary w-100" onclick="registerUser('Receiver')">Register as Receiver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Section -->
+        <div class="mt-5">
+            <h3 class="mb-3">Registered Users</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="data-table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-body">
+                        <!-- Dynamically populated data will appear here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let userId = 1; // To keep track of user IDs
+        const dataBody = document.getElementById('data-body'); // The tbody element to display data
+
+        function registerUser(role) {
+            const name = prompt("Please enter your name:");
+            if (name) {
+                const status = role === "Donor" ? "Active" : "Pending";
+                const newRow = `
+                    <tr>
+                        <td>${userId}</td>
+                        <td>${name}</td>
+                        <td>${role}</td>
+                        <td>${status}</td>
+                    </tr>
+                `;
+                dataBody.insertAdjacentHTML('beforeend', newRow); // Add the new row to the table
+                userId++; // Increment user ID
+            } else {
+                alert("Name is required to register.");
+            }
+        }
+    </script>
+</body>
