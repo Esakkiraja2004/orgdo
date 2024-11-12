@@ -1,0 +1,80 @@
+<% layout('layout/layoutPlate') %> <!-- Reference to the layout file -->
+
+<div class="container d-flex justify-content-center align-items-center vh-100" style="background-color: #e8f5e9;"> <!-- Light Green Background -->
+    <div class="card shadow-lg" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 15px;">
+        <div class="card-body">
+            <h1 class="text-center mb-4" style="font-size: 2.5rem; color: #388e3c;">Hospital Sign Up</h1> <!-- Dark Green Heading -->
+
+            <form id="signupForm" onsubmit="return validateSignupForm()">
+                <!-- Hospital ID -->
+                <div class="form-group">
+                    <label for="hospitalId" class="font-weight-bold" style="color: #388e3c;">Hospital ID</label>
+                    <input type="text" class="form-control form-control-lg" id="hospitalId" name="hospitalId" placeholder="Enter Hospital ID" required style="border-color: #388e3c;">
+                </div>
+
+                <!-- Hospital Name -->
+                <div class="form-group">
+                    <label for="hospitalName" class="font-weight-bold" style="color: #388e3c;">Hospital Name</label>
+                    <input type="text" class="form-control form-control-lg" id="hospitalName" name="hospitalName" placeholder="Enter Hospital Name" required style="border-color: #388e3c;">
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email" class="font-weight-bold" style="color: #388e3c;">Email Address</label>
+                    <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter Email Address" required style="border-color: #388e3c;">
+                    <small id="emailError" class="form-text text-danger" style="display: none;">Please enter a valid email address.</small>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password" class="font-weight-bold" style="color: #388e3c;">Choose Password</label>
+                    <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter Password" required style="border-color: #388e3c;">
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirmPassword" class="font-weight-bold" style="color: #388e3c;">Confirm Password</label>
+                    <input type="password" class="form-control form-control-lg" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required style="border-color: #388e3c;">
+                    <small id="passwordError" class="form-text text-danger" style="display: none;">Passwords do not match!</small>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-lg w-100" style="background-color: #388e3c; color: white; border: none;">Sign Up</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p>Already have an account? <a href="/hospital-login" class="font-weight-bold" style="color: #388e3c;">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom JavaScript for Form Validation -->
+<script>
+    function validateSignupForm() {
+        // Get form fields
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var email = document.getElementById("email").value;
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        // Hide error messages initially
+        document.getElementById("emailError").style.display = "none";
+        document.getElementById("passwordError").style.display = "none";
+
+        // Validate email format
+        if (!emailPattern.test(email)) {
+            document.getElementById("emailError").style.display = "block";
+            return false;  // Email format is invalid
+        }
+
+        // Validate if password and confirm password match
+        if (password !== confirmPassword) {
+            document.getElementById("passwordError").style.display = "block";
+            return false;  // Passwords do not match
+        }
+
+        // All validations passed
+        return true;
+    }
+</script>

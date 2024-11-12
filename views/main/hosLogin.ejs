@@ -1,0 +1,28 @@
+<% layout('layout/layoutPlate') %>
+
+<!-- User Login Page with Green Theme -->
+<div class="d-flex justify-content-center align-items-center" style="background-color: #e0f7e6; height: 100vh;">
+    <div class="card p-4 shadow-lg rounded" style="max-width: 400px; width: 100%; background-color: #ffffff;">
+        <div class="card-body">
+            <h1 class="text-center mb-4 text-success" style="font-family: 'Roboto', sans-serif; font-weight: bold;">Hospital Login</h1>
+            <form id="loginForm" onsubmit="return validateForm()">
+                <div class="form-group mb-3">
+                    <label for="username" class="font-weight-bold text-success">Hospital Name</label>
+                    <input type="text" class="form-control form-control-lg border-success" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="username" class="font-weight-bold text-success">Hospital ID </label>
+                    <input type="text" class="form-control form-control-lg border-success" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="password" class="font-weight-bold text-success">Password</label>
+                    <input type="password" class="form-control form-control-lg border-success" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg w-100">Login</button>
+                <div class="text-center mt-4">
+                    <p>New to the platform? <a href="/hospital-signup" class="text-success font-weight-bold">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
